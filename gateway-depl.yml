@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: pitstop-gateway
-          image: chaimaaitali/pitstop-express-gateway:edab5715
+          image: chaimaaitali/pitstop-express-gateway:8a4e817c
           ports:
             - containerPort: 8080
           envFrom:
