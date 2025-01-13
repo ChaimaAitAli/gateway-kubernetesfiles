@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pitstop-workshop-mock
+  namespace: pitstop
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pitstop-workshop-mock
+  template:
+    metadata:
+      labels:
+        app: pitstop-workshop-mock
+    spec:
+      containers:
+        - name: pitstop-workshop-mock
+          image: nginxdemos/hello:latest
+          ports:
+            - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pitstop-workshop-service
+  namespace: pitstop
+spec:
+  ports:
+    - port: 3003
+      targetPort: 80
+  selector:
+    app: pitstop-workshop-mock
