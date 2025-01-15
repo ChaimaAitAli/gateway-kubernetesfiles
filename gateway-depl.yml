@@ -18,6 +18,29 @@ spec:
           image: chaimaaitali/pitstop-express-gateway:latest
           ports:
             - containerPort: 8080
-          envFrom:
-            - configMapRef:
-                name: pitstop-gateway-configmap
+          env:
+            - name: CRYPTO_CIPHER_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: pitstop-gateway-secrets
+                  key: CRYPTO_CIPHER_KEY
+            - name: SESSION_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: pitstop-gateway-secrets
+                  key: SESSION_SECRET
+            - name: ACCESS_TOKENS_EXPIRY
+              valueFrom:
+                secretKeyRef:
+                  name: pitstop-gateway-secrets
+                  key: ACCESS_TOKENS_EXPIRY
+            - name: REFRESH_TOKENS_EXPIRY
+              valueFrom:
+                secretKeyRef:
+                  name: pitstop-gateway-secrets
+                  key: REFRESH_TOKENS_EXPIRY
+            - name: AUTH_CODES_EXPIRY
+              valueFrom:
+                secretKeyRef:
+                  name: pitstop-gateway-secrets
+                  key: AUTH_CODES_EXPIRY
